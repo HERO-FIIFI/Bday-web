@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Golden Jubilee Celebration</title>
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -26,95 +29,98 @@
             --glass: rgba(17, 34, 64, 0.75);
         }
 
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            scroll-behavior: smooth; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
-        
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            background-color: var(--navy); 
-            color: var(--white); 
-            overflow-x: hidden; 
-            line-height: 1.6; 
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--navy);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
-        
-        h1, h2, h3, h4 { 
-            font-family: 'Playfair Display', serif; 
-            color: var(--gold); 
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
         }
-        
+
         /* --- UTILITIES --- */
-        .container { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 0 20px; 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        
+
         .gold-text {
             background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            -webkit-background-clip: text; 
-            background-clip: text; 
+            -webkit-background-clip: text;
+            background-clip: text;
             color: transparent;
         }
-        
+
         .btn {
-            display: inline-block; 
-            padding: 15px 35px; 
-            background: transparent; 
+            display: inline-block;
+            padding: 15px 35px;
+            background: transparent;
             border: 1px solid var(--gold);
-            color: var(--gold); 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
             font-size: 0.9rem;
             transition: all 0.4s ease;
-            cursor: pointer; 
-            text-decoration: none; 
+            cursor: pointer;
+            text-decoration: none;
             margin-top: 20px;
         }
-        
-        .btn:hover { 
-            background: var(--gold); 
-            color: var(--navy); 
-            box-shadow: 0 0 15px var(--gold); 
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--navy);
+            box-shadow: 0 0 15px var(--gold);
             transform: translateY(-3px);
         }
-        
+
         /* --- 1. CINEMATIC INTRO OVERLAY --- */
         #intro-overlay {
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
             background-color: var(--navy);
             z-index: 9999;
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
             transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        
-        .intro-content { 
-            text-align: center; 
-            opacity: 0; 
-            animation: fadeIn 2s forwards; 
+
+        .intro-content {
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
         }
-        
-        .intro-line { 
-            width: 2px; 
-            height: 0; 
-            background: var(--gold); 
-            margin: 20px auto; 
-            animation: growLine 1.5s forwards 0.5s; 
+
+        .intro-line {
+            width: 2px;
+            height: 0;
+            background: var(--gold);
+            margin: 20px auto;
+            animation: growLine 1.5s forwards 0.5s;
         }
-        
+
         #enter-btn {
-            margin-top: 30px; 
-            opacity: 0; 
+            margin-top: 30px;
+            opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s forwards 2s;
         }
@@ -138,7 +144,8 @@
             justify-content: center;
             position: relative;
             background: url('Photos/IMG_4827.JPG') no-repeat center center/cover;
-            background-attachment: fixed; /* Parallax effect */
+            background-attachment: fixed;
+            /* Parallax effect */
         }
 
         .hero-overlay {
@@ -204,6 +211,11 @@
         /* --- SECTIONS --- */
         .section {
             padding: 100px 0;
+            scroll-margin-top: 20px;
+        }
+
+        #details {
+            scroll-margin-top: 80px;
         }
 
         /* --- ABOUT --- */
@@ -536,8 +548,8 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             border: 1px solid var(--gold);
             transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-                        opacity 0.4s ease,
-                        box-shadow 0.3s ease;
+                opacity 0.4s ease,
+                box-shadow 0.3s ease;
             transform-style: preserve-3d;
             cursor: pointer;
             opacity: 0;
@@ -600,24 +612,63 @@
 
         /* Floating animation keyframes */
         @keyframes float1 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(10px, -15px) rotate(1deg); }
-            50% { transform: translate(-5px, -25px) rotate(-1deg); }
-            75% { transform: translate(-10px, -15px) rotate(1deg); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(10px, -15px) rotate(1deg);
+            }
+
+            50% {
+                transform: translate(-5px, -25px) rotate(-1deg);
+            }
+
+            75% {
+                transform: translate(-10px, -15px) rotate(1deg);
+            }
         }
 
         @keyframes float2 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(-15px, -10px) rotate(-1deg); }
-            50% { transform: translate(5px, -20px) rotate(1deg); }
-            75% { transform: translate(15px, -10px) rotate(-1deg); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(-15px, -10px) rotate(-1deg);
+            }
+
+            50% {
+                transform: translate(5px, -20px) rotate(1deg);
+            }
+
+            75% {
+                transform: translate(15px, -10px) rotate(-1deg);
+            }
         }
 
         @keyframes float3 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(12px, -18px) rotate(2deg); }
-            50% { transform: translate(-8px, -22px) rotate(-2deg); }
-            75% { transform: translate(-12px, -18px) rotate(2deg); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(12px, -18px) rotate(2deg);
+            }
+
+            50% {
+                transform: translate(-8px, -22px) rotate(-2deg);
+            }
+
+            75% {
+                transform: translate(-12px, -18px) rotate(2deg);
+            }
         }
 
         /* Floating Gallery Controls */
@@ -671,7 +722,7 @@
             height: 400px;
             border: none;
         }
-        
+
         /* Custom Map Filter for Dark Theme */
         .google-map {
             width: 100%;
@@ -693,7 +744,8 @@
             margin-bottom: 20px;
         }
 
-        input, textarea {
+        input,
+        textarea {
             width: 100%;
             padding: 15px;
             background: rgba(255, 255, 255, 0.05);
@@ -703,7 +755,8 @@
             border-radius: 5px;
         }
 
-        input:focus, textarea:focus {
+        input:focus,
+        textarea:focus {
             outline: none;
             border-color: var(--gold);
         }
@@ -750,18 +803,49 @@
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+            }
         }
 
         /* --- ANIMATIONS --- */
-        @keyframes fadeIn { to { opacity: 1; } }
-        @keyframes growLine { to { height: 100px; } }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes growLine {
+            to {
+                height: 100px;
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .reveal {
@@ -777,21 +861,34 @@
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
+
             /* Fix intro text */
-            .intro-content h1 { font-size: 2rem !important; }
-            .intro-content p { font-size: 0.9rem; }
-            #enter-btn { padding: 12px 25px; font-size: 0.8rem; }
+            .intro-content h1 {
+                font-size: 2rem !important;
+            }
+
+            .intro-content p {
+                font-size: 0.9rem;
+            }
+
+            #enter-btn {
+                padding: 12px 25px;
+                font-size: 0.8rem;
+            }
 
             /* Fix hero section */
             .hero {
-                background-attachment: scroll; /* Remove parallax on mobile */
+                background-attachment: scroll;
+                /* Remove parallax on mobile */
                 min-height: 100vh;
             }
+
             .hero h1 {
                 font-size: 2rem !important;
                 line-height: 1.2;
                 padding: 0 10px;
             }
+
             .hero p {
                 font-size: 0.9rem;
                 padding: 0 10px;
@@ -803,12 +900,19 @@
                 gap: 10px;
                 padding: 0 10px;
             }
+
             .time-box {
                 min-width: 70px;
                 padding: 10px 15px;
             }
-            .time-box span { font-size: 1.5rem; }
-            .time-box label { font-size: 0.7rem; }
+
+            .time-box span {
+                font-size: 1.5rem;
+            }
+
+            .time-box label {
+                font-size: 0.7rem;
+            }
 
             /* Fix buttons */
             .btn {
@@ -818,8 +922,13 @@
             }
 
             /* Fix sections */
-            .section { padding: 60px 0; }
-            .section-title { font-size: 2rem; }
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
 
             /* Fix about grid */
             .about-grid {
@@ -832,30 +941,59 @@
                 grid-template-columns: 1fr;
                 gap: 0;
             }
-            .map-details { padding: 30px 20px; }
-            .map-frame { height: 300px; }
+
+            .map-details {
+                padding: 30px 20px;
+            }
+
+            .map-details h2 {
+                font-size: 1.8rem;
+            }
+
+            .map-details p {
+                font-size: 0.9rem;
+            }
+
+            .map-frame {
+                height: 300px;
+                width: 100%;
+            }
+
+            .google-map {
+                width: 100%;
+                height: 100%;
+            }
 
             /* Fix event details */
             .details-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-            .detail-card { padding: 30px 15px; }
+
+            .detail-card {
+                padding: 30px 15px;
+            }
 
             /* Fix 3D gallery */
-            .gallery-container { height: 350px; }
+            .gallery-container {
+                height: 350px;
+            }
+
             .gallery-card {
                 width: 220px;
                 height: 320px;
             }
+
             .gallery-card.prev {
                 transform: translateX(-110px) scale(0.75) rotateY(15deg);
                 opacity: 0.4;
             }
+
             .gallery-card.next {
                 transform: translateX(110px) scale(0.75) rotateY(-15deg);
                 opacity: 0.4;
             }
+
             .control-btn {
                 width: 45px;
                 height: 45px;
@@ -894,24 +1032,63 @@
 
             /* Reduce floating animations on mobile */
             @keyframes float1 {
-                0%, 100% { transform: translate(0, 0); }
-                25% { transform: translate(5px, -8px); }
-                50% { transform: translate(-3px, -12px); }
-                75% { transform: translate(-5px, -8px); }
+
+                0%,
+                100% {
+                    transform: translate(0, 0);
+                }
+
+                25% {
+                    transform: translate(5px, -8px);
+                }
+
+                50% {
+                    transform: translate(-3px, -12px);
+                }
+
+                75% {
+                    transform: translate(-5px, -8px);
+                }
             }
 
             @keyframes float2 {
-                0%, 100% { transform: translate(0, 0); }
-                25% { transform: translate(-8px, -5px); }
-                50% { transform: translate(3px, -10px); }
-                75% { transform: translate(8px, -5px); }
+
+                0%,
+                100% {
+                    transform: translate(0, 0);
+                }
+
+                25% {
+                    transform: translate(-8px, -5px);
+                }
+
+                50% {
+                    transform: translate(3px, -10px);
+                }
+
+                75% {
+                    transform: translate(8px, -5px);
+                }
             }
 
             @keyframes float3 {
-                0%, 100% { transform: translate(0, 0); }
-                25% { transform: translate(6px, -9px); }
-                50% { transform: translate(-4px, -11px); }
-                75% { transform: translate(-6px, -9px); }
+
+                0%,
+                100% {
+                    transform: translate(0, 0);
+                }
+
+                25% {
+                    transform: translate(6px, -9px);
+                }
+
+                50% {
+                    transform: translate(-4px, -11px);
+                }
+
+                75% {
+                    transform: translate(-6px, -9px);
+                }
             }
 
             /* Improve floating card content visibility on mobile */
@@ -939,31 +1116,79 @@
                 height: 10px;
             }
 
+            /* Fix floating gallery navigation button */
+            .floating-gallery-nav .btn {
+                font-size: 0.75rem;
+                padding: 10px 20px;
+            }
+
+            /* Fix floating gallery section title */
+            .floating-gallery .gold-text {
+                font-size: 2rem !important;
+            }
+
+            .floating-gallery .section-title {
+                font-size: 1.8rem;
+            }
+
             /* Fix timeline */
-            .timeline::before { left: 20px; }
+            .timeline::before {
+                left: 20px;
+            }
+
             .timeline-item {
                 width: 100%;
                 padding-left: 50px;
                 padding-right: 10px;
                 text-align: left !important;
             }
-            .timeline-item.left, .timeline-item.right {
+
+            .timeline-item.left,
+            .timeline-item.right {
                 text-align: left;
                 left: 0;
             }
-            .timeline-item::after { left: 12px; }
-            .timeline-item.left::after { left: 12px; }
-            .timeline-content h3 { font-size: 1rem; }
-            .timeline-content p { font-size: 0.85rem; }
-            .time-badge { font-size: 0.8rem; padding: 4px 8px; }
+
+            .timeline-item::after {
+                left: 12px;
+            }
+
+            .timeline-item.left::after {
+                left: 12px;
+            }
+
+            .timeline-content h3 {
+                font-size: 1rem;
+            }
+
+            .timeline-content p {
+                font-size: 0.85rem;
+            }
+
+            .time-badge {
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
 
             /* Fix wishes section */
-            .wishes-container { padding: 25px 15px; }
-            input, textarea { padding: 12px; font-size: 0.9rem; }
+            .wishes-container {
+                padding: 25px 15px;
+            }
+
+            input,
+            textarea {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
 
             /* Fix footer */
-            footer h2 { font-size: 1.5rem !important; }
-            footer p { font-size: 0.85rem; }
+            footer h2 {
+                font-size: 1.5rem !important;
+            }
+
+            footer p {
+                font-size: 0.85rem;
+            }
 
             /* Fix music toggle */
             .music-toggle {
@@ -974,11 +1199,18 @@
             }
 
             /* Prevent horizontal overflow */
-            .container { padding: 0 15px; }
-            img { max-width: 100%; height: auto; }
+            .container {
+                padding: 0 15px;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- 1. PROFESSIONAL INTRO OVERLAY -->
@@ -998,7 +1230,7 @@
     <audio id="bg-music" loop>
         <source src="GYATABRUWAA.m4a" type="audio/mpeg">
     </audio>
-    
+
     <!-- Music Toggle Button -->
     <div class="music-toggle" onclick="toggleMusic()">
         <i class="fas fa-music"></i>
@@ -1025,7 +1257,8 @@
             <div class="about-text reveal">
                 <h2 class="section-title">A Legacy of Grace</h2>
                 <p>
-                    Join us as we celebrate a milestone in the life of Michael Larbi-Amoah. A journey defined by resilience,
+                    Join us as we celebrate a milestone in the life of Michael Larbi-Amoah. A journey defined by
+                    resilience,
                     love, and laughter. 2025 marks not just another year, but the beginning of a golden era.
                 </p>
                 <br>
@@ -1059,7 +1292,7 @@
                     <i class="fas fa-clock"></i>
                     <h3>Time</h3>
                     <p>3:30 PM Sharp</p>
-                    <p>Wednesday, Nov 19th</p>
+                    <p>Saturday, Nov 22nd</p>
                 </div>
                 <div class="detail-card">
                     <i class="fas fa-tshirt"></i>
@@ -1206,26 +1439,27 @@
             <div class="map-details">
                 <h2>The Venue</h2>
                 <p style="margin-bottom: 20px;">Ocean Green Beach Resort<br>Prampram, Ghana</p>
-                
-                <p><i class="fas fa-clock" style="color: var(--gold);"></i> 3:30 PM — Wednesday, Nov 19th</p>
-                <p style="margin-bottom: 30px;"><i class="fas fa-tshirt" style="color: var(--gold);"></i> Dress Code: White (Casual)</p>
+
+                <p><i class="fas fa-clock" style="color: var(--gold);"></i> 3:30 PM — Saturday, Nov 22nd</p>
+                <p style="margin-bottom: 30px;"><i class="fas fa-tshirt" style="color: var(--gold);"></i> Dress Code:
+                    White (Casual)</p>
 
                 <!-- GOOGLE CALENDAR LINK GENERATOR -->
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Birthday+Celebration+for+Michael+Larbi-Amoah&dates=20251119T153000/20251119T220000&details=Dress+Code:+White+Casual.+Venue:+Ocean+Green+Beach+Resort.&location=Ocean+Green+Beach+Resort,+Prampram,+Ghana&sf=true&output=xml" 
-                   target="_blank" 
-                   class="btn" 
-                   style="text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Birthday+Celebration+for+Michael+Larbi-Amoah&dates=20251122T153000/20251122T220000&details=Dress+Code:+White+Casual.+Venue:+Ocean+Green+Beach+Resort.&location=Ocean+Green+Beach+Resort,+Prampram,+Ghana&sf=true&output=xml"
+                    target="_blank" class="btn"
+                    style="text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
                     <i class="far fa-calendar-plus"></i> Add to Google Calendar
                 </a>
             </div>
 
             <!-- Right: Google Map Embed with Filters -->
             <div class="map-frame">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.505295433216!2d0.0886!3d5.7020!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1020790000000001%3A0x123456789abcdef!2sOcean%20Green%20Beach%20Resort!5e0!3m2!1sen!2sgh!4v1620000000000!5m2!1sen!2sgh" 
-                    class="google-map" 
-                    allowfullscreen="" 
-                    loading="lazy">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.0691529090655!2d0.08805289999999999!3d5.7031497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10207d9ecb000003%3A0xd5dd3885c8b9037e!2sOcean%20Green%20Beach%20and%20resort!5e0!3m2!1sen!2sgh!4v1763656735317!5m2!1sen!2sgh"
+                    class="google-map"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
         </div>
@@ -1270,10 +1504,10 @@
         function enterSite() {
             const overlay = document.getElementById('intro-overlay');
             const music = document.getElementById('bg-music');
-            
+
             // 1. Fade out overlay
             overlay.style.transform = "translateY(-100%)";
-            
+
             // 2. Start Music (Allowed because user clicked button)
             music.volume = 0.5;
             music.play().catch(e => console.log("Audio play failed", e));
@@ -1283,9 +1517,9 @@
         }
 
         /* --- 2. COUNTDOWN LOGIC --- */
-        // Setting date to FUTURE so you can see it working (Nov 19, 2025)
-        const eventDate = new Date("November 19, 2025 15:30:00").getTime();
-        
+        // Setting date to match event (Nov 22, 2025)
+        const eventDate = new Date("November 22, 2025 15:30:00").getTime();
+
         const timer = setInterval(() => {
             const now = new Date().getTime();
             const dist = eventDate - now;
@@ -1293,11 +1527,11 @@
                 document.getElementById("countdown").innerHTML = "<h3>Event Started!</h3>";
                 clearInterval(timer); return;
             }
-            const d = Math.floor(dist / (1000*60*60*24));
-            const h = Math.floor((dist % (1000*60*60*24)) / (1000*60*60));
-            const m = Math.floor((dist % (1000*60*60)) / (1000*60));
-            const s = Math.floor((dist % (1000*60)) / 1000);
-            
+            const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+            const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((dist % (1000 * 60)) / 1000);
+
             document.getElementById("countdown").innerHTML = `
                 <div class="time-box"><span>${d}</span><label>Days</label></div>
                 <div class="time-box"><span>${h}</span><label>Hrs</label></div>
@@ -1334,7 +1568,7 @@
             { src: "Photos/IMG_2963.JPG", title: "Precious Moments", date: "Treasured Forever" },
             { src: "Photos/IMG_2735.JPG", title: "Golden Years", date: "Life's Journey" }
         ];
-        
+
         let currentIndex = 0;
         const container = document.getElementById('galleryContainer');
         let autoScroll; // Variable to hold the timer
@@ -1566,7 +1800,7 @@
         function createFloatingNavigationDots() {
             const totalSets = Math.ceil(floatingGalleryImages.length / floatingCardsPerSet);
             floatingNavDots.innerHTML = '';
-            
+
             for (let i = 0; i < totalSets; i++) {
                 const dot = document.createElement('div');
                 dot.className = `floating-nav-dot ${i === currentFloatingSet ? 'active' : ''}`;
@@ -1673,7 +1907,7 @@
                 c.style.zIndex = '1';
                 c.style.transform = c.style.transform.replace(/scale\([^)]*\)/, 'scale(1)');
             });
-            
+
             // Bring clicked card to front
             card.style.zIndex = '100';
             card.style.transform = card.style.transform + ' scale(1.1)';
@@ -1692,23 +1926,23 @@
         /* --- 5. PARTICLES --- */
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth; 
+        canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        
+
         let particlesArray = [];
         const colors = ['#d4af37', '#fcf6ba', '#b38728'];
 
         class Particle {
             constructor() {
-                this.x = Math.random() * canvas.width; 
+                this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3; 
+                this.size = Math.random() * 3;
                 this.speedX = Math.random() * 1 - 0.5;
                 this.speedY = Math.random() * 1 - 0.5;
                 this.color = colors[Math.floor(Math.random() * colors.length)];
             }
-            
-            update() { 
+
+            update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
                 if (this.size > 0.2) this.size -= 0.01; // Fade out
@@ -1718,24 +1952,24 @@
                     this.size = Math.random() * 3;
                 }
             }
-            
-            draw() { 
-                ctx.fillStyle = this.color; 
-                ctx.beginPath(); 
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); 
-                ctx.fill(); 
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
-        
-        function initParticles() { 
-            for(let i=0; i<100; i++) particlesArray.push(new Particle()); 
+
+        function initParticles() {
+            for (let i = 0; i < 100; i++) particlesArray.push(new Particle());
         }
-        
+
         function handleParticles() {
-            ctx.clearRect(0,0,canvas.width, canvas.height);
-            for(let i=0; i<particlesArray.length; i++) { 
-                particlesArray[i].update(); 
-                particlesArray[i].draw(); 
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
             }
             requestAnimationFrame(handleParticles);
         }
@@ -1799,4 +2033,5 @@
         }
     </script>
 </body>
+
 </html>
