@@ -499,6 +499,156 @@
             transform: scale(1.1);
         }
 
+        /* --- FLOATING CARDS GALLERY --- */
+        .floating-gallery {
+            padding: 80px 0;
+            background: radial-gradient(circle at center, #112240 0%, var(--navy) 70%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-gallery::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23d4af37" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+
+        .floating-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+
+        .floating-card {
+            position: absolute;
+            width: 280px;
+            height: 380px;
+            border-radius: 15px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--gold);
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), 
+                        opacity 0.8s ease,
+                        box-shadow 0.5s ease;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .floating-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(10, 25, 47, 0.7) 100%);
+            border-radius: 15px;
+            transition: opacity 0.5s ease;
+        }
+
+        .floating-card:hover::before {
+            opacity: 0.3;
+        }
+
+        .floating-card:hover {
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
+            z-index: 100;
+        }
+
+        .floating-card.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .floating-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 0 0 15px 15px;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .floating-card:hover .floating-card-content {
+            transform: translateY(0);
+        }
+
+        .floating-card-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--gold);
+        }
+
+        .floating-card-content p {
+            font-size: 0.8rem;
+            color: var(--white);
+            opacity: 0.8;
+        }
+
+        /* Floating animation keyframes */
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(10px, -15px) rotate(1deg); }
+            50% { transform: translate(-5px, -25px) rotate(-1deg); }
+            75% { transform: translate(-10px, -15px) rotate(1deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-15px, -10px) rotate(-1deg); }
+            50% { transform: translate(5px, -20px) rotate(1deg); }
+            75% { transform: translate(15px, -10px) rotate(-1deg); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(12px, -18px) rotate(2deg); }
+            50% { transform: translate(-8px, -22px) rotate(-2deg); }
+            75% { transform: translate(-12px, -18px) rotate(2deg); }
+        }
+
+        /* Floating Gallery Controls */
+        .floating-gallery-nav {
+            text-align: center;
+            margin-top: 30px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .floating-nav-dots {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .floating-nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .floating-nav-dot.active {
+            background: var(--gold);
+            transform: scale(1.2);
+        }
+
         /* --- MAP & LOCATION --- */
         .map-section {
             display: grid;
@@ -627,29 +777,138 @@
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .about-grid { grid-template-columns: 1fr; }
-            .map-section { grid-template-columns: 1fr; }
-            
-            /* Gallery adjustments */
-            .gallery-container { height: 400px; }
-            .gallery-card { width: 260px; height: 360px; }
-            .gallery-card.prev { transform: translateX(-130px) scale(0.85) rotateY(15deg); }
-            .gallery-card.next { transform: translateX(130px) scale(0.85) rotateY(-15deg); }
-            
-            /* Timeline adjustments */
-            .timeline::before { left: 20px; }
-            .timeline-item { 
-                width: 100%; 
-                padding-left: 50px; 
-                padding-right: 10px; 
+            /* Fix intro text */
+            .intro-content h1 { font-size: 2rem !important; }
+            .intro-content p { font-size: 0.9rem; }
+            #enter-btn { padding: 12px 25px; font-size: 0.8rem; }
+
+            /* Fix hero section */
+            .hero {
+                background-attachment: scroll; /* Remove parallax on mobile */
+                min-height: 100vh;
             }
-            .timeline-item.left, .timeline-item.right { 
-                text-align: left; 
-                left: 0; 
+            .hero h1 {
+                font-size: 2rem !important;
+                line-height: 1.2;
+                padding: 0 10px;
+            }
+            .hero p {
+                font-size: 0.9rem;
+                padding: 0 10px;
+            }
+
+            /* Fix countdown */
+            .countdown-container {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 0 10px;
+            }
+            .time-box {
+                min-width: 70px;
+                padding: 10px 15px;
+            }
+            .time-box span { font-size: 1.5rem; }
+            .time-box label { font-size: 0.7rem; }
+
+            /* Fix buttons */
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+            }
+
+            /* Fix sections */
+            .section { padding: 60px 0; }
+            .section-title { font-size: 2rem; }
+
+            /* Fix about grid */
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            /* Fix map section */
+            .map-section {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .map-details { padding: 30px 20px; }
+            .map-frame { height: 300px; }
+
+            /* Fix event details */
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .detail-card { padding: 30px 15px; }
+
+            /* Fix 3D gallery */
+            .gallery-container { height: 350px; }
+            .gallery-card {
+                width: 220px;
+                height: 320px;
+            }
+            .gallery-card.prev {
+                transform: translateX(-110px) scale(0.75) rotateY(15deg);
+                opacity: 0.4;
+            }
+            .gallery-card.next {
+                transform: translateX(110px) scale(0.75) rotateY(-15deg);
+                opacity: 0.4;
+            }
+            .control-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            /* Fix floating gallery */
+            .floating-container {
+                height: 500px;
+            }
+            
+            .floating-card {
+                width: 220px;
+                height: 300px;
+            }
+
+            /* Fix timeline */
+            .timeline::before { left: 20px; }
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 10px;
+                text-align: left !important;
+            }
+            .timeline-item.left, .timeline-item.right {
+                text-align: left;
+                left: 0;
             }
             .timeline-item::after { left: 12px; }
             .timeline-item.left::after { left: 12px; }
+            .timeline-content h3 { font-size: 1rem; }
+            .timeline-content p { font-size: 0.85rem; }
+            .time-badge { font-size: 0.8rem; padding: 4px 8px; }
+
+            /* Fix wishes section */
+            .wishes-container { padding: 25px 15px; }
+            input, textarea { padding: 12px; font-size: 0.9rem; }
+
+            /* Fix footer */
+            footer h2 { font-size: 1.5rem !important; }
+            footer p { font-size: 0.85rem; }
+
+            /* Fix music toggle */
+            .music-toggle {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+
+            /* Prevent horizontal overflow */
+            .container { padding: 0 15px; }
+            img { max-width: 100%; height: auto; }
         }
     </style>
 </head>
@@ -670,7 +929,7 @@
 
     <!-- Audio (Hidden) -->
     <audio id="bg-music" loop>
-        <source src="GYATABRUWA.mp3" type="audio/mpeg">
+        <source src="GYATABRUWAA.m4a" type="audio/mpeg">
     </audio>
     
     <!-- Music Toggle Button -->
@@ -849,6 +1108,27 @@
         <div class="gallery-controls reveal">
             <button class="control-btn" onclick="moveGallery('prev')"><i class="fas fa-arrow-left"></i></button>
             <button class="control-btn" onclick="moveGallery('next')"><i class="fas fa-arrow-right"></i></button>
+        </div>
+    </section>
+
+    <!-- FLOATING CARDS GALLERY -->
+    <section class="floating-gallery">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;" class="reveal">
+                <h2 class="gold-text" style="font-size: 3rem;">Cherished Memories</h2>
+                <p style="opacity: 0.7; margin-top: 10px;">A journey through golden moments</p>
+            </div>
+
+            <div class="floating-container" id="floatingContainer">
+                <!-- Cards will be injected via JavaScript -->
+            </div>
+
+            <div class="floating-gallery-nav reveal">
+                <div class="floating-nav-dots" id="floatingNavDots">
+                    <!-- Dots will be injected via JavaScript -->
+                </div>
+                <button class="btn" onclick="shuffleFloatingGallery()">Shuffle Memories</button>
+            </div>
         </div>
     </section>
 
@@ -1073,7 +1353,246 @@
         // Initialize on Load
         document.addEventListener('DOMContentLoaded', initGallery);
 
-        /* --- 4. PARTICLES --- */
+        /* --- 4. FLOATING GALLERY LOGIC --- */
+        const floatingGalleryImages = [
+            // Videos
+            {
+                src: "Photos/31DFE05F-F9CC-49D6-90F7-890686EB5866.mp4",
+                title: "Special Moment",
+                date: "Video Memory",
+                type: "video",
+                animation: "float1",
+                position: { x: 15, y: 20, z: 0 }
+            },
+            {
+                src: "Photos/copy_65CFFFB4-1868-4286-91DD-7CFA673744C3.mov",
+                title: "Celebration Video",
+                date: "Captured",
+                type: "video",
+                animation: "float2",
+                position: { x: 65, y: 50, z: 20 }
+            },
+            {
+                src: "Photos/filtered-1CBE9B6C-0F5F-4962-BE1F-4D357586695E.mov",
+                title: "Filtered Memory",
+                date: "Special Day",
+                type: "video",
+                animation: "float3",
+                position: { x: 40, y: 10, z: 30 }
+            },
+            {
+                src: "Photos/IMG_1715.MOV",
+                title: "Golden Moment",
+                date: "2024",
+                type: "video",
+                animation: "float1",
+                position: { x: 80, y: 30, z: 10 }
+            },
+            // Photos not in 3D gallery
+            {
+                src: "Photos/3f8a1b14-38c9-4d68-a5a2-02c91f6321cf.jpg",
+                title: "Radiant Smile",
+                date: "Memories",
+                animation: "float2",
+                position: { x: 25, y: 60, z: 40 }
+            },
+            {
+                src: "Photos/IMG_3797.JPG",
+                title: "Happy Times",
+                date: "2024",
+                animation: "float3",
+                position: { x: 70, y: 15, z: 20 }
+            },
+            {
+                src: "Photos/IMG_3799.JPG",
+                title: "Joyful Days",
+                date: "Celebration",
+                animation: "float1",
+                position: { x: 10, y: 45, z: 35 }
+            },
+            {
+                src: "Photos/IMG_4953.JPG",
+                title: "Beautiful Memories",
+                date: "Event",
+                animation: "float2",
+                position: { x: 55, y: 65, z: 15 }
+            },
+            {
+                src: "Photos/IMG_4981.JPG",
+                title: "Treasured Moments",
+                date: "2024",
+                animation: "float3",
+                position: { x: 35, y: 35, z: 25 }
+            },
+            {
+                src: "Photos/IMG_5011.JPG",
+                title: "Special Occasions",
+                date: "Memories",
+                animation: "float1",
+                position: { x: 75, y: 55, z: 5 }
+            },
+            {
+                src: "Photos/IMG_8265.JPG",
+                title: "Cherished Times",
+                date: "Portrait",
+                animation: "float2",
+                position: { x: 20, y: 25, z: 30 }
+            },
+            {
+                src: "Photos/IMG_8475.JPG",
+                title: "Graceful Moments",
+                date: "Captured",
+                animation: "float3",
+                position: { x: 60, y: 70, z: 20 }
+            },
+            {
+                src: "Photos/IMG_8530.JPG",
+                title: "Golden Memories",
+                date: "Event",
+                animation: "float1",
+                position: { x: 45, y: 50, z: 40 }
+            }
+        ];
+
+        let currentFloatingSet = 0;
+        const floatingCardsPerSet = 5;
+        const floatingContainer = document.getElementById('floatingContainer');
+        const floatingNavDots = document.getElementById('floatingNavDots');
+
+        // Initialize floating gallery
+        function initFloatingGallery() {
+            createFloatingNavigationDots();
+            showFloatingCardSet(currentFloatingSet);
+        }
+
+        // Create navigation dots for floating gallery
+        function createFloatingNavigationDots() {
+            const totalSets = Math.ceil(floatingGalleryImages.length / floatingCardsPerSet);
+            floatingNavDots.innerHTML = '';
+            
+            for (let i = 0; i < totalSets; i++) {
+                const dot = document.createElement('div');
+                dot.className = `floating-nav-dot ${i === currentFloatingSet ? 'active' : ''}`;
+                dot.addEventListener('click', () => showFloatingCardSet(i));
+                floatingNavDots.appendChild(dot);
+            }
+        }
+
+        // Show specific set of floating cards
+        function showFloatingCardSet(setIndex) {
+            // Update active dot
+            document.querySelectorAll('.floating-nav-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === setIndex);
+            });
+
+            // Calculate start and end indices
+            const startIndex = setIndex * floatingCardsPerSet;
+            const endIndex = Math.min(startIndex + floatingCardsPerSet, floatingGalleryImages.length);
+
+            // Clear container
+            floatingContainer.innerHTML = '';
+
+            // Add cards for current set
+            for (let i = startIndex; i < endIndex; i++) {
+                const item = floatingGalleryImages[i];
+                const card = document.createElement('div');
+                card.className = 'floating-card';
+                card.style.left = `${item.position.x}%`;
+                card.style.top = `${item.position.y}%`;
+                card.style.transform = `translateZ(${item.position.z}px)`;
+                card.style.animation = `${item.animation} ${8 + i * 2}s ease-in-out infinite`;
+
+                // Check if it's a video
+                if (item.type === 'video') {
+                    // Create video element
+                    const video = document.createElement('video');
+                    video.src = item.src;
+                    video.autoplay = true;
+                    video.loop = true;
+                    video.muted = true; // Muted for autoplay to work
+                    video.playsInline = true;
+                    video.style.width = '100%';
+                    video.style.height = '100%';
+                    video.style.objectFit = 'cover';
+                    video.style.borderRadius = '15px';
+                    video.style.position = 'absolute';
+                    video.style.top = '0';
+                    video.style.left = '0';
+
+                    card.appendChild(video);
+
+                    // Add unmute button
+                    const unmuteBtn = document.createElement('button');
+                    unmuteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    unmuteBtn.style.position = 'absolute';
+                    unmuteBtn.style.top = '10px';
+                    unmuteBtn.style.right = '10px';
+                    unmuteBtn.style.background = 'rgba(212, 175, 55, 0.9)';
+                    unmuteBtn.style.border = 'none';
+                    unmuteBtn.style.borderRadius = '50%';
+                    unmuteBtn.style.width = '35px';
+                    unmuteBtn.style.height = '35px';
+                    unmuteBtn.style.cursor = 'pointer';
+                    unmuteBtn.style.color = 'var(--navy)';
+                    unmuteBtn.style.zIndex = '10';
+
+                    unmuteBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        video.muted = !video.muted;
+                        unmuteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
+                    });
+
+                    card.appendChild(unmuteBtn);
+                } else {
+                    // Regular image
+                    card.style.backgroundImage = `url(${item.src})`;
+                }
+
+                card.innerHTML += `
+                    <div class="floating-card-content">
+                        <h3>${item.title}</h3>
+                        <p>${item.date}</p>
+                    </div>
+                `;
+
+                // Add click event to focus on card
+                card.addEventListener('click', () => focusFloatingCard(card));
+
+                floatingContainer.appendChild(card);
+
+                // Animate card entrance with delay
+                setTimeout(() => {
+                    card.classList.add('active');
+                }, 200 * (i - startIndex));
+            }
+
+            currentFloatingSet = setIndex;
+        }
+
+        // Focus on a specific floating card (bring to front)
+        function focusFloatingCard(card) {
+            // Reset all cards
+            document.querySelectorAll('.floating-card').forEach(c => {
+                c.style.zIndex = '1';
+                c.style.transform = c.style.transform.replace(/scale\([^)]*\)/, 'scale(1)');
+            });
+            
+            // Bring clicked card to front
+            card.style.zIndex = '100';
+            card.style.transform = card.style.transform + ' scale(1.1)';
+        }
+
+        // Shuffle floating gallery (show random set)
+        function shuffleFloatingGallery() {
+            const totalSets = Math.ceil(floatingGalleryImages.length / floatingCardsPerSet);
+            const randomSet = Math.floor(Math.random() * totalSets);
+            showFloatingCardSet(randomSet);
+        }
+
+        // Initialize floating gallery on load
+        document.addEventListener('DOMContentLoaded', initFloatingGallery);
+
+        /* --- 5. PARTICLES --- */
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; 
