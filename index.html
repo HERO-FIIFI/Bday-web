@@ -384,7 +384,7 @@
             border-radius: 15px;
             background-size: cover;
             background-position: center;
-            transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             opacity: 0;
             z-index: 0;
@@ -535,9 +535,9 @@
             background-position: center;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             border: 1px solid var(--gold);
-            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), 
-                        opacity 0.8s ease,
-                        box-shadow 0.5s ease;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                        opacity 0.4s ease,
+                        box-shadow 0.3s ease;
             transform-style: preserve-3d;
             cursor: pointer;
             opacity: 0;
@@ -1307,32 +1307,32 @@
 
         /* --- 3. 3D GALLERY LOGIC --- */
         const galleryImages = [
-            { src: "Photos/4c0701df-b756-42e1-a1d5-e4826b2990ab.jpg", title: "Beautiful Moments", date: "Memories" },
-            { src: "Photos/d32d070d-c18c-4f88-8fcb-de6c11171782.jpg", title: "Special Times", date: "Captured" },
-            { src: "Photos/PT7_3146.JPG", title: "Celebrations", date: "2024" },
-            { src: "Photos/b634976f-0aa1-4129-9946-50b7ed2d5882.jpg", title: "Joyful Days", date: "Memories" },
-            { src: "Photos/10410439-f590-4c00-9dd6-395bef2d2645.jpg", title: "Cherished Moments", date: "Special Day" },
-            { src: "Photos/PT7_3485.JPG", title: "Happy Times", date: "2024" },
-            { src: "Photos/IMG_4827.JPG", title: "Elegant Evening", date: "Gala" },
-            { src: "Photos/IMG-20200718-WA0015.jpg", title: "Family Love", date: "2020" },
-            { src: "Photos/IMG_3271.JPG", title: "Grace & Beauty", date: "Portrait" },
-            { src: "Photos/IMG_5069.JPG", title: "Celebration Time", date: "Event" },
-            { src: "Photos/FB_IMG_1511217363532.jpg", title: "Precious Moments", date: "2017" },
-            { src: "Photos/PT7_3176.JPG", title: "Golden Memories", date: "2024" },
-            { src: "Photos/IMG-20200718-WA0014.jpg", title: "Together", date: "2020" },
-            { src: "Photos/fc31fdea-d807-4ffa-8a7c-5815d6d92044.jpg", title: "Wonderful Times", date: "Memories" },
-            { src: "Photos/IMG_8461.JPG", title: "Radiant Smile", date: "Captured" },
-            { src: "Photos/IMG_8306.JPG", title: "Stylish Moments", date: "Fashion" },
-            { src: "Photos/IMG_8333.JPG", title: "Elegant Style", date: "Portrait" },
-            { src: "Photos/IMG_4959.JPG", title: "Joyful Celebration", date: "Event" },
-            { src: "Photos/IMG_8316.JPG", title: "Beautiful Day", date: "Memories" },
-            { src: "Photos/IMG_8392.JPG", title: "Graceful Moments", date: "Portrait" },
-            { src: "Photos/IMG_2742.JPG", title: "Family Time", date: "Together" },
-            { src: "Photos/IMG_2966.JPG", title: "Special Occasions", date: "Celebration" },
-            { src: "Photos/IMG_2965.JPG", title: "Happy Memories", date: "Event" },
-            { src: "Photos/IMG_2734.JPG", title: "Cherished Times", date: "Family" },
-            { src: "Photos/IMG_2963.JPG", title: "Precious Moments", date: "Memories" },
-            { src: "Photos/IMG_2735.JPG", title: "Golden Years", date: "Journey" }
+            { src: "Photos/4c0701df-b756-42e1-a1d5-e4826b2990ab.jpg", title: "Beautiful Moments", date: "Timeless Memories" },
+            { src: "Photos/d32d070d-c18c-4f88-8fcb-de6c11171782.jpg", title: "Special Times", date: "Forever Cherished" },
+            { src: "Photos/PT7_3146.JPG", title: "Celebrations", date: "Joyful Gathering" },
+            { src: "Photos/b634976f-0aa1-4129-9946-50b7ed2d5882.jpg", title: "Joyful Days", date: "Happiness Captured" },
+            { src: "Photos/10410439-f590-4c00-9dd6-395bef2d2645.jpg", title: "Cherished Moments", date: "Life's Blessings" },
+            { src: "Photos/PT7_3485.JPG", title: "Happy Times", date: "Celebration Day" },
+            { src: "Photos/IMG_4827.JPG", title: "Elegant Evening", date: "Gala Night" },
+            { src: "Photos/IMG-20200718-WA0015.jpg", title: "Family Love", date: "Bonded Forever" },
+            { src: "Photos/IMG_3271.JPG", title: "Grace & Beauty", date: "Radiant Smile" },
+            { src: "Photos/IMG_5069.JPG", title: "Celebration Time", date: "Special Occasion" },
+            { src: "Photos/FB_IMG_1511217363532.jpg", title: "Precious Moments", date: "Treasured Memory" },
+            { src: "Photos/PT7_3176.JPG", title: "Golden Memories", date: "Milestone Moment" },
+            { src: "Photos/IMG-20200718-WA0014.jpg", title: "Together", date: "Family Unity" },
+            { src: "Photos/fc31fdea-d807-4ffa-8a7c-5815d6d92044.jpg", title: "Wonderful Times", date: "Heart Full of Joy" },
+            { src: "Photos/IMG_8461.JPG", title: "Radiant Smile", date: "Pure Happiness" },
+            { src: "Photos/IMG_8306.JPG", title: "Stylish Moments", date: "Fashion Forward" },
+            { src: "Photos/IMG_8333.JPG", title: "Elegant Style", date: "Sophisticated Grace" },
+            { src: "Photos/IMG_4959.JPG", title: "Joyful Celebration", date: "Party Time" },
+            { src: "Photos/IMG_8316.JPG", title: "Beautiful Day", date: "Sunshine & Smiles" },
+            { src: "Photos/IMG_8392.JPG", title: "Graceful Moments", date: "Elegant Pose" },
+            { src: "Photos/IMG_2742.JPG", title: "Family Time", date: "Together Always" },
+            { src: "Photos/IMG_2966.JPG", title: "Special Occasions", date: "Memorable Celebration" },
+            { src: "Photos/IMG_2965.JPG", title: "Happy Memories", date: "Precious Times" },
+            { src: "Photos/IMG_2734.JPG", title: "Cherished Times", date: "Family Bonds" },
+            { src: "Photos/IMG_2963.JPG", title: "Precious Moments", date: "Treasured Forever" },
+            { src: "Photos/IMG_2735.JPG", title: "Golden Years", date: "Life's Journey" }
         ];
         
         let currentIndex = 0;
@@ -1405,7 +1405,7 @@
         function startAutoScroll() {
             autoScroll = setInterval(() => {
                 moveGallery('next');
-            }, 4000); // Change every 4 seconds
+            }, 1500); // Change every 1.5 seconds
         }
 
         function resetAutoScroll() {
@@ -1417,6 +1417,36 @@
         container.addEventListener('mouseenter', () => clearInterval(autoScroll));
         container.addEventListener('mouseleave', startAutoScroll);
 
+        // Touch/Swipe Support for 3D Gallery
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const swipeThreshold = 50; // Minimum distance for swipe
+
+        container.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            clearInterval(autoScroll); // Pause auto-scroll on touch
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            startAutoScroll(); // Resume auto-scroll after swipe
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeDistance = touchStartX - touchEndX;
+
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance > 0) {
+                    // Swiped left - show next
+                    moveGallery('next');
+                } else {
+                    // Swiped right - show previous
+                    moveGallery('prev');
+                }
+            }
+        }
+
         // Initialize on Load
         document.addEventListener('DOMContentLoaded', initGallery);
 
@@ -1426,7 +1456,7 @@
             {
                 src: "Photos/31DFE05F-F9CC-49D6-90F7-890686EB5866.mp4",
                 title: "Special Moment",
-                date: "Video Memory",
+                date: "Life in Motion",
                 type: "video",
                 animation: "float1",
                 position: { x: 15, y: 20, z: 0 }
@@ -1434,7 +1464,7 @@
             {
                 src: "Photos/copy_65CFFFB4-1868-4286-91DD-7CFA673744C3.mov",
                 title: "Celebration Video",
-                date: "Captured",
+                date: "Joyful Times",
                 type: "video",
                 animation: "float2",
                 position: { x: 65, y: 50, z: 20 }
@@ -1442,7 +1472,7 @@
             {
                 src: "Photos/filtered-1CBE9B6C-0F5F-4962-BE1F-4D357586695E.mov",
                 title: "Filtered Memory",
-                date: "Special Day",
+                date: "Memorable Day",
                 type: "video",
                 animation: "float3",
                 position: { x: 40, y: 10, z: 30 }
@@ -1450,7 +1480,7 @@
             {
                 src: "Photos/IMG_1715.MOV",
                 title: "Golden Moment",
-                date: "2024",
+                date: "Celebration Highlights",
                 type: "video",
                 animation: "float1",
                 position: { x: 80, y: 30, z: 10 }
@@ -1466,28 +1496,28 @@
             {
                 src: "Photos/IMG_3797.JPG",
                 title: "Happy Times",
-                date: "2024",
+                date: "Living the Dream",
                 animation: "float3",
                 position: { x: 70, y: 15, z: 20 }
             },
             {
                 src: "Photos/IMG_3799.JPG",
                 title: "Joyful Days",
-                date: "Celebration",
+                date: "Beautiful Celebration",
                 animation: "float1",
                 position: { x: 10, y: 45, z: 35 }
             },
             {
                 src: "Photos/IMG_4953.JPG",
                 title: "Beautiful Memories",
-                date: "Event",
+                date: "Unforgettable Moments",
                 animation: "float2",
                 position: { x: 55, y: 65, z: 15 }
             },
             {
                 src: "Photos/IMG_4981.JPG",
                 title: "Treasured Moments",
-                date: "2024",
+                date: "Captured Joy",
                 animation: "float3",
                 position: { x: 35, y: 35, z: 25 }
             },
