@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Jubilee Celebration</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --navy: #0a192f;
+            --navy-light: #112240;
+            --gold: #d4af37;
+            --gold-hover: #f3e5ab;
+            --white: #e6f1ff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--navy); color: var(--white); overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--gold); }
+        
+        /* --- UTILITIES --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .gold-text {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .btn {
+            display: inline-block; padding: 15px 35px; background: transparent; border: 1px solid var(--gold);
+            color: var(--gold); text-transform: uppercase; letter-spacing: 2px; cursor: pointer; text-decoration: none;
+            transition: 0.4s; margin-top: 20px;
+        }
+        .btn:hover { background: var(--gold); color: var(--navy); box-shadow: 0 0 15px var(--gold); }
+        
+        /* --- 1. CINEMATIC INTRO OVERLAY --- */
+        #intro-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--navy);
+            z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        
+        .intro-content { text-align: center; opacity: 0; animation: fadeIn 2s forwards; }
+        .intro-line { width: 2px; height: 0; background: var(--gold); margin: 20px auto; animation: growLine 1.5s forwards 0.5s; }
+        
+        #enter-btn {
+            margin-top: 30px; opacity: 0; transform: translateY(20px);
+            animation: fadeInUp 1s forwards 2s;
+        }
+
+        /* --- 3D GALLERY STYLES --- */
+        .gallery-section { perspective: 1000px; overflow: hidden; padding: 80px 0; background: radial-gradient(circle, #112240 0%, var(--navy) 70%); }
+        .gallery-container { position: relative; width: 100%; max-width: 1000px; height: 500px; margin: 0 auto; display: flex; justify-content: center; align-items: center; transform-style: preserve-3d; }
+        .gallery-card {
+            position: absolute; width: 300px; height: 420px; background-size: cover; background-position: center;
+            transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1); border: 1px solid var(--gold); box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+        .gallery-card.active { transform: translateX(0) scale(1); z-index: 10; opacity: 1; box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
+        .gallery-card.prev { transform: translateX(-220px) scale(0.85) rotateY(25deg); opacity: 0.6; z-index: 5; filter: brightness(0.5); }
+        .gallery-card.next { transform: translateX(220px) scale(0.85) rotateY(-25deg); opacity: 0.6; z-index: 5; filter: brightness(0.5); }
+        .gallery-card.hidden { transform: translateX(0) scale(0.5); opacity: 0; }
+        
+        /* Gallery Controls */
+        .gallery-controls { text-align: center; margin-top: 30px; }
+        .control-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); width: 50px; height: 50px; border-radius: 50%; cursor: pointer; margin: 0 10px; transition: 0.3s; }
+        .control-btn:hover { background: var(--gold); color: var(--navy); }
+
+        /* --- HERO & GENERAL --- */
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; background: url('Photos/IMG_4827.JPG') center/cover; position: relative; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 25, 47, 0.75); }
+        .hero-content { position: relative; z-index: 2; text-align: center; }
+        .hero h1 { font-size: 4rem; margin-bottom: 10px; }
+        
+        /* --- COUNTDOWN --- */
+        .countdown-container { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+        .time-box { border: 1px solid var(--gold); padding: 15px; min-width: 80px; border-radius: 5px; backdrop-filter: blur(5px); }
+        .time-box span { display: block; font-size: 1.8rem; font-weight: 700; color: var(--gold); }
+        .time-box label { font-size: 0.7rem; text-transform: uppercase; }
+
+        /* --- MAP & LOCATION --- */
+        .map-section { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 50px; border: 1px solid var(--gold); }
+        .map-details { padding: 50px; display: flex; flex-direction: column; justify-content: center; background: var(--navy-light); }
+        .map-frame { width: 100%; height: 400px; border: none; }
+        
+        /* Custom Map Filter for Dark Theme */
+        .google-map {
+            width: 100%; height: 100%;
+            filter: grayscale(100%) invert(92%) sepia(10%) saturate(200%) hue-rotate(180deg) brightness(90%) contrast(95%);
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes growLine { to { height: 100px; } }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .map-section { grid-template-columns: 1fr; }
+            .gallery-card { width: 240px; height: 340px; }
+            .gallery-card.prev { transform: translateX(-120px) scale(0.8) rotateY(15deg); }
+            .gallery-card.next { transform: translateX(120px) scale(0.8) rotateY(-15deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. PROFESSIONAL INTRO OVERLAY -->
+    <div id="intro-overlay">
+        <div class="intro-content">
+            <p style="letter-spacing: 3px; text-transform: uppercase; color: #8892b0;">You are invited</p>
+            <div class="intro-line"></div>
+            <h1 class="gold-text" style="font-size: 3rem;">The Golden Jubilee</h1>
+            <button id="enter-btn" class="btn" onclick="enterSite()">Enter Experience</button>
+        </div>
+    </div>
+
+    <!-- Floating Particles -->
+    <canvas id="particles-canvas" style="position: fixed; top:0; left:0; z-index: -1;"></canvas>
+
+    <!-- Audio (Hidden) -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <p>Celebrating an Amazing Journey</p>
+            <h1 class="gold-text">Happy Birthday<br> [Name]</h1>
+            <div class="countdown-container" id="countdown"></div>
+            <a href="#wishes" class="btn">Send a Wish</a>
+        </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section class="container" style="padding: 80px 20px; text-align: center;">
+        <h2 class="reveal">A Legacy of Grace</h2>
+        <p class="reveal" style="max-width: 600px; margin: 20px auto; color: #a8b2d1;">
+            Join us as we celebrate a milestone in the life of [Name]. 
+            A journey defined by resilience, love, and laughter.
+        </p>
+    </section>
+
+    <!-- 3D GALLERY -->
+    <section id="gallery" class="gallery-section">
+        <div style="text-align: center; margin-bottom: 40px;" class="reveal">
+            <h2>Memories</h2>
+            <p>Swipe to explore</p>
+        </div>
+        <div class="gallery-container reveal" id="galleryContainer">
+            <!-- Images injected via JS -->
+        </div>
+        <div class="gallery-controls reveal">
+            <button class="control-btn" onclick="moveGallery('prev')"><i class="fas fa-arrow-left"></i></button>
+            <button class="control-btn" onclick="moveGallery('next')"><i class="fas fa-arrow-right"></i></button>
+        </div>
+    </section>
+
+    <!-- 2. MAP & CALENDAR SECTION -->
+    <section class="container reveal" style="margin-bottom: 100px;">
+        <div class="map-section">
+            <!-- Left: Details & Calendar Button -->
+            <div class="map-details">
+                <h2>The Venue</h2>
+                <p style="margin-bottom: 20px;">Ocean Green Beach Resort<br>Prampram, Ghana</p>
+                
+                <p><i class="fas fa-clock" style="color: var(--gold);"></i> 3:30 PM — Wednesday, Nov 19th</p>
+                <p style="margin-bottom: 30px;"><i class="fas fa-tshirt" style="color: var(--gold);"></i> Dress Code: White (Casual)</p>
+
+                <!-- GOOGLE CALENDAR LINK GENERATOR -->
+                <!-- Note: Dates are formatted YYYYMMDDTHHMMSSZ. Adjusted for demo. -->
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Birthday+Celebration+for+[Name]&dates=20251119T153000/20251119T220000&details=Dress+Code:+White+Casual.+Venue:+Ocean+Green+Beach+Resort.&location=Ocean+Green+Beach+Resort,+Prampram,+Ghana&sf=true&output=xml" 
+                   target="_blank" 
+                   class="btn" 
+                   style="text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <i class="far fa-calendar-plus"></i> Add to Google Calendar
+                </a>
+            </div>
+
+            <!-- Right: Google Map Embed with Filters -->
+            <div class="map-frame">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.505295433216!2d0.0886!3d5.7020!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1020790000000001%3A0x123456789abcdef!2sOcean%20Green%20Beach%20Resort!5e0!3m2!1sen!2sgh!4v1620000000000!5m2!1sen!2sgh" 
+                    class="google-map" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- GUEST WISHES -->
+    <section id="wishes" class="container reveal" style="padding-bottom: 80px;">
+        <div style="background: var(--navy-light); padding: 40px; border-radius: 10px; text-align: center;">
+            <h2>Leave a Wish</h2>
+            <input type="text" id="guestName" placeholder="Your Name" style="width: 100%; padding: 15px; margin: 10px 0; background: #0a192f; border: 1px solid #333; color: white;">
+            <textarea id="guestMessage" rows="3" placeholder="Message..." style="width: 100%; padding: 15px; margin: 10px 0; background: #0a192f; border: 1px solid #333; color: white;"></textarea>
+            <button class="btn" onclick="addWish()">Post Message</button>
+            <div id="wishesBoard" style="margin-top: 30px; text-align: left;"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 50px; border-top: 1px solid #333;">
+        <p style="opacity: 0.5;">&copy; 2025 Celebration.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        /* --- 1. INTRO & MUSIC LOGIC --- */
+        function enterSite() {
+            const overlay = document.getElementById('intro-overlay');
+            const music = document.getElementById('bg-music');
+            
+            // 1. Fade out overlay
+            overlay.style.transform = "translateY(-100%)";
+            
+            // 2. Start Music (Allowed because user clicked button)
+            music.volume = 0.5;
+            music.play().catch(e => console.log("Audio play failed", e));
+
+            // 3. Start Particle effects (Wait for reveal)
+            setTimeout(() => { initParticles(); handleParticles(); }, 500);
+        }
+
+        /* --- 2. COUNTDOWN LOGIC --- */
+        // Setting date to FUTURE so you can see it working (Dec 20, 2025)
+        const eventDate = new Date("December 20, 2025 15:30:00").getTime();
+        
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const dist = eventDate - now;
+            if (dist < 0) {
+                document.getElementById("countdown").innerHTML = "<h3>Event Started!</h3>";
+                clearInterval(timer); return;
+            }
+            const d = Math.floor(dist / (1000*60*60*24));
+            const h = Math.floor((dist % (1000*60*60*24)) / (1000*60*60));
+            const m = Math.floor((dist % (1000*60*60)) / (1000*60));
+            const s = Math.floor((dist % (1000*60)) / 1000);
+            
+            document.getElementById("countdown").innerHTML = `
+                <div class="time-box"><span>${d}</span><label>Days</label></div>
+                <div class="time-box"><span>${h}</span><label>Hrs</label></div>
+                <div class="time-box"><span>${m}</span><label>Mins</label></div>
+                <div class="time-box"><span>${s}</span><label>Secs</label></div>`;
+        }, 1000);
+
+        /* --- 3. 3D GALLERY LOGIC --- */
+        const images = [
+            "Photos/4c0701df-b756-42e1-a1d5-e4826b2990ab.jpg",
+            "Photos/d32d070d-c18c-4f88-8fcb-de6c11171782.jpg",
+            "Photos/PT7_3146.JPG",
+            "Photos/b634976f-0aa1-4129-9946-50b7ed2d5882.jpg",
+            "Photos/10410439-f590-4c00-9dd6-395bef2d2645.jpg",
+            "Photos/PT7_3485.JPG",
+            "Photos/IMG_4827.JPG",
+            "Photos/IMG-20200718-WA0015.jpg",
+            "Photos/IMG_3271.JPG",
+            "Photos/IMG_5069.JPG",
+            "Photos/FB_IMG_1511217363532.jpg",
+            "Photos/PT7_3176.JPG",
+            "Photos/IMG-20200718-WA0014.jpg",
+            "Photos/fc31fdea-d807-4ffa-8a7c-5815d6d92044.jpg",
+            "Photos/IMG_8461.JPG",
+            "Photos/IMG_8306.JPG",
+            "Photos/IMG_8333.JPG",
+            "Photos/IMG_4959.JPG",
+            "Photos/IMG_8316.JPG",
+            "Photos/IMG_8392.JPG",
+            "Photos/IMG_2742.JPG",
+            "Photos/IMG_2966.JPG",
+            "Photos/IMG_2965.JPG",
+            "Photos/IMG_2734.JPG",
+            "Photos/IMG_2963.JPG",
+            "Photos/IMG_2735.JPG"
+        ];
+        let curIdx = 0;
+        const galContainer = document.getElementById('galleryContainer');
+
+        function initGallery() {
+            galContainer.innerHTML = '';
+            images.forEach((src, i) => {
+                const d = document.createElement('div');
+                d.className = 'gallery-card';
+                d.style.backgroundImage = `url(${src})`;
+                galContainer.appendChild(d);
+            });
+            updateGallery();
+        }
+
+        function updateGallery() {
+            const cards = document.querySelectorAll('.gallery-card');
+            cards.forEach((c, i) => {
+                c.className = 'gallery-card';
+                if (i === curIdx) c.classList.add('active');
+                else if (i === (curIdx - 1 + images.length) % images.length) c.classList.add('prev');
+                else if (i === (curIdx + 1) % images.length) c.classList.add('next');
+                else c.classList.add('hidden');
+            });
+        }
+
+        function moveGallery(dir) {
+            if (dir === 'next') curIdx = (curIdx + 1) % images.length;
+            else curIdx = (curIdx - 1 + images.length) % images.length;
+            updateGallery();
+        }
+        
+        // Initialize
+        initGallery();
+        setInterval(() => moveGallery('next'), 4000); // Auto slide
+
+        /* --- 4. PARTICLES --- */
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let pArray = [];
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2; this.speedY = Math.random() * 1 - 0.5;
+            }
+            update() { this.y += this.speedY; if(this.size > 0.1) this.size -= 0.005; if(this.size<=0.1) { this.y = Math.random()*canvas.height; this.size = Math.random()*2; }}
+            draw() { ctx.fillStyle = '#d4af37'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); }
+        }
+        function initParticles() { for(let i=0; i<50; i++) pArray.push(new Particle()); }
+        function handleParticles() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            for(let i=0; i<pArray.length; i++) { pArray[i].update(); pArray[i].draw(); }
+            requestAnimationFrame(handleParticles);
+        }
+
+        /* --- SCROLL REVEAL --- */
+        window.addEventListener("scroll", () => {
+            document.querySelectorAll(".reveal").forEach(r => {
+                if(r.getBoundingClientRect().top < window.innerHeight - 100) r.classList.add("active");
+            });
+        });
+
+        /* --- WISHES --- */
+        function addWish() {
+            const n = document.getElementById('guestName').value;
+            const m = document.getElementById('guestMessage').value;
+            if(n && m) {
+                const d = document.createElement('div');
+                d.style.borderBottom = "1px solid #333"; d.style.padding = "10px 0";
+                d.innerHTML = `<strong style="color:var(--gold)">${n}</strong>: ${m}`;
+                document.getElementById('wishesBoard').prepend(d);
+                document.getElementById('guestName').value = ''; document.getElementById('guestMessage').value = '';
+            }
+        }
+    </script>
+</body>
+</html>

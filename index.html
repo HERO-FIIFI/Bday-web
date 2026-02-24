@@ -1228,7 +1228,7 @@
 
     <!-- Audio (Hidden) -->
     <audio id="bg-music" loop>
-        <source src="GYATABRUWAA.m4a" type="audio/mpeg">
+        <source src="GYATABRUWAA.m4a" type="audio/mp4">
     </audio>
 
     <!-- Music Toggle Button -->
@@ -1510,7 +1510,11 @@
 
             // 2. Start Music (Allowed because user clicked button)
             music.volume = 0.5;
-            music.play().catch(e => console.log("Audio play failed", e));
+            music.play().then(() => {
+                isPlaying = true;
+                document.querySelector('.music-toggle i').classList.remove('fa-music');
+                document.querySelector('.music-toggle i').classList.add('fa-pause');
+            }).catch(e => console.log("Audio play failed", e));
 
             // 3. Start Particle effects (Wait for reveal)
             setTimeout(() => { initParticles(); handleParticles(); }, 500);
@@ -1879,12 +1883,12 @@
                     card.style.backgroundImage = `url(${item.src})`;
                 }
 
-                card.innerHTML += `
+                card.insertAdjacentHTML('beforeend', `
                     <div class="floating-card-content">
                         <h3>${item.title}</h3>
                         <p>${item.date}</p>
                     </div>
-                `;
+                `);
 
                 // Add click event to focus on card
                 card.addEventListener('click', () => focusFloatingCard(card));
